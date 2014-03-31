@@ -7,12 +7,13 @@
 --	p1x.in
 --	@w84death
 --
---	Codename MATCH RPG [30.03.2014]
+--	Logic War [30.03.2014]
 --
 -------------------------------------------------------------------------------
 */
 
-console.log('Logic War alpha\n--------------------------')
+var version = 'alpha1'
+console.log('Logic War '+version+'\n--------------------------')
 
 var game = {
 	field: null,
