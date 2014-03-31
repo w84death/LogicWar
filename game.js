@@ -23,6 +23,7 @@ var game = {
 		red: 0,
 		blue: 0
 	},
+	turn: 0,
 
 	blockTypes: ['unit red','unit blue','wall','trap', 'health'],
 	blockLabels: ['1','1','','!', '+'],
@@ -58,6 +59,7 @@ var game = {
 		    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
 		        e.preventDefault();
 		        game.moveField(e);
+		        game.turn++;
 		        setTimeout(function() {
 		        	game.generateRandomBlock({type:false})
 		        }, 300);
@@ -70,6 +72,7 @@ var game = {
 	},
 
 	newGame: function(){
+		this.turn = 0;
 		this.field.innerHTML = '';
 		for (var x = 0; x < this.width; x++) {
 			for (var y = 0; y < this.height; y++) {
@@ -136,16 +139,21 @@ var game = {
 			return true;
 		}else{
 			// WHELL.. EVERY GAME HAS AN END
-			alert('Game Over\n blue '+this.score.blue+' : '+this.score.red + ' red');
-			this.newGame();
+			this.gameOver();
 			return false;
 		}
+	},
+
+	gameOver: function(){		
+		alert('Game Over\n blue '+this.score.blue+' : '+this.score.red + ' red');
+		this.newGame();
 	},
 
 	insertBlock: function(params){
 		var newID = this.lastID++,
 			newBlock = document.createElement('span');
 
+		// MAKE DOM STUFF
 		newBlock.className = this.blockTypes[params.type];
 		newBlock.id = newID;
 		newBlock.style.left = params.x * this.spriteSize + 'px';
@@ -153,6 +161,7 @@ var game = {
 		newBlock.innerHTML = this.blockLabels[params.type];
 		this.field.appendChild(newBlock);
 
+		// ADD ID TO THE ARRAY
 		this.bigArray[params.x][params.y] = {
 			id: newID,
 			type: params.type,
@@ -180,6 +189,10 @@ var game = {
 		};
 		document.getElementById('red-score').innerHTML = this.score.red;
 		document.getElementById('blue-score').innerHTML = this.score.blue;
+
+		if(this.score.blue === 0 && this.turn > 0){
+			this.gameOver();
+		}
 	},
 
 	fadeBlock: function(id){
