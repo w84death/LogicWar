@@ -12,7 +12,7 @@
 -------------------------------------------------------------------------------
 */
 
-console.log('Puzzle Conflict alpha\n--------------------------')
+console.log('Logic War alpha\n--------------------------')
 
 var game = {
 	field: null,
@@ -116,9 +116,11 @@ var game = {
 				type = params.type;
 			}else{
 				var randomizer = (Math.random()*100)<<0;
-				if(randomizer < 40) type = 0; else
-				if(randomizer < 80) type = 1; else
-				if(randomizer < 90) type = 2; else type = 3;
+				if(randomizer < 35) type = 0; else
+				if(randomizer < 70) type = 1; else
+				if(randomizer < 80) type = 2; else
+				if(randomizer < 90) type = 3; else
+				type = 4;
 			}
 
 			// INSERT NEW BLOCK
