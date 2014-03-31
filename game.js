@@ -327,7 +327,20 @@ var game = {
 				}
 			};
 		};
+	},
 
+	showHelp: function(){
+		document.getElementById('help').style.display = 'block';
+	},
+	closeHelp: function(){
+		document.getElementById('help').style.display = 'none';
+	},
+
+	showCredits: function(){
+		document.getElementById('credits').style.display = 'block';
+	},
+	closeCredits: function(){
+		document.getElementById('credits').style.display = 'none';
 	},
 }
 

@@ -18,12 +18,42 @@
     <section id="game">
     </section>
 
+    <section id="help" style="display:none;">
+        <h2><a href="javascript:game.closeHelp();">Close (x)</a></h2>
+        <h3>How to play</h3>
+        <p>Use arrow keys to move tiles on map</p>
+        <h3>Game idea</h3>
+        <p>There is red and blue armies represented by tiles with numbers.<p>
+        <p>It's notimportant with army you'll support. The important thing is that one will have much more score than the other.</p>
+        <p>Numbers on tiles represent army strength</p>
+        <h3>How to fight</h3>
+        <p>If two tiles moves one each other they will fight.<p>
+        <p><strong>[4] > [1] = [3]</strong> One with bigger number will win (and lose 1point for this action).</p>
+        <p><strong>[2] + [2] = die</strong> If they have same number both will lose.</p>
+        <h3>Blank tile</h3>
+        <p>[ ] Blank/wall tile that is just a simple obstacle.</p>
+        <h3>Bonuses tiles</h3>
+        <p><strong>[!] + [4] = die</strong> The yellow tile will destroy any tile.</p>
+        <p><strong>[+] + [1] = [2]</strong> The green tile will add 1 point to any army.<p>
+    </section>
+
+    <section id="credits" style="display:none;">
+        <h2><a href="javascript:game.closeCredits();">Close (x)</a></h2>
+        <h3>Credits</h3>
+        <p>Krzysztof Jankowski</p>
+        <ul>
+            <li>@w84death
+            <li><a href="http://p1x.in">p1x.in</a>
+            <li><a href="http://krzysztofjankowski.com">krzysztofjankowski.com</a>
+        </ul>
+    </section>
+
     <footer>
         <nav>
             <ul>
                 <li><a href="javascript:game.newGame();">New game</a>
-                <li><a href="#">Help</a>
-                <li><a href="#">Credits</a>
+                <li><a href="javascript:game.showHelp();">Help</a>
+                <li><a href="javascript:game.showCredits();">Credits</a>
             </ul>
         </nav>
     </footer>
