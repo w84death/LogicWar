@@ -56,7 +56,6 @@ border-radius: 4px;}
     -moz-border-radius: 4px;
     border-radius: 4px;
 }
-#game span:hover {cursor:pointer; border-bottom-color:rgba(255,255,255,0.9);}
 
 #red-score {color:#be2633;}
 #blue-score {color:#31a2f2;}

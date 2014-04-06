@@ -56,20 +56,31 @@ var game = {
 		this.generateRandomBlock({type:1});
 		this.generateRandomBlock({type:2});
 
-		window.addEventListener("keydown", function(e) {
-		    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-		        e.preventDefault();
-		        game.moveField(e);
-		        game.turn++;
-		        setTimeout(function() {
-		        	game.generateRandomBlock({type:false})
-		        }, 300);
+		window.addEventListener("keydown", function(event) {
+		    if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
+		       event.preventDefault();
+		       game.registerMove(event); 
 		    }
 		}, false);
+
+		var hammertime = Hammer(this.field).on('dragleft dragright dragdown dragup swipeleft swiperight swipeup swipedown', function(event) {				        		
+	        event.gesture.preventDefault();
+	        if(['swipeleft','swiperight','swipeup','swipedown'].indexOf(event.type) > -1) {
+	        	game.registerMove(event);   	
+	        }
+    	});
 
 		Element.prototype.remove = function() {
 		    this.parentElement.removeChild(this);
 		}
+	},
+
+	registerMove: function(event){
+        this.moveField(event);
+        this.turn++;
+        setTimeout(function() {
+        	game.generateRandomBlock({type:false})
+        }, 300);
 	},
 
 	newGame: function(){
@@ -262,7 +273,7 @@ var game = {
 
 		// UP
 
-		if(event.keyIdentifier == 'Up'){
+		if(event.keyIdentifier == 'Up' || event.type == 'swipeup'){
 			for (y = 0; y < this.height; y++) {
 				for (x = 0; x < this.width; x++) {
 					temp = y+1;
@@ -279,7 +290,7 @@ var game = {
 
 		// DOWN
 
-		if(event.keyIdentifier == 'Down'){
+		if(event.keyIdentifier == 'Down' || event.type == 'swipedown'){
 			for (y = this.height-1; y > -1; y--) {
 				for (x = 0; x < this.width; x++) {
 					temp = y-1;
@@ -296,7 +307,7 @@ var game = {
 
 		// LEFT
 
-		if(event.keyIdentifier == 'Left'){
+		if(event.keyIdentifier == 'Left' || event.type == 'swipeleft'){
 			for (x = 0; x < this.width; x++) {
 				for (y = 0; y < this.height; y++) {
 					temp = x+1;
@@ -313,7 +324,7 @@ var game = {
 
 		// RIGHT
 
-		if(event.keyIdentifier == 'Right'){
+		if(event.keyIdentifier == 'Right' || event.type == 'swiperight'){
 			for (x = this.width-1; x > -1; x--) {
 				for (y = 0; y < this.height; y++) {
 					temp = x-1;
