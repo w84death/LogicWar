@@ -12,7 +12,7 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #222; margin:
 
 
 
-body {width:512px; margin:0 auto;}
+body {width:256px; margin:0 auto;}
 ul,li {margin:0; padding:0; list-style:none; display:inline-block;}
 a:link, a:visited, a:active {text-decoration:underline;}
 h1 {float:left; margin:0;}

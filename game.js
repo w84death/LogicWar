@@ -12,7 +12,7 @@
 -------------------------------------------------------------------------------
 */
 
-var version = 'alpha1'
+var version = 'alpha2'
 console.log('Logic War '+version+'\n--------------------------')
 
 var game = {
@@ -50,12 +50,6 @@ var game = {
 			};
 		};
 
-		// push random block
-
-		this.generateRandomBlock({type:0});
-		this.generateRandomBlock({type:1});
-		this.generateRandomBlock({type:2});
-
 		window.addEventListener("keydown", function(event) {
 		    if([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1) {
 		       event.preventDefault();
@@ -72,7 +66,10 @@ var game = {
 
 		Element.prototype.remove = function() {
 		    this.parentElement.removeChild(this);
-		}
+		}		
+
+		// start new game
+		this.newGame();
 	},
 
 	registerMove: function(event){
@@ -83,7 +80,19 @@ var game = {
         }, 300);
 	},
 
-	newGame: function(){
+	newSeed: function(){
+		var randomizer = new Date(),
+			pathArray = window.location.pathname.split( '/' ),
+			seed = pathArray[1] || randomizer;
+
+		// get seed from url or use date (random)
+		console.log('RANDOM SEED: '+seed);
+		Math.seedrandom(seed);
+	},
+
+	newGame: function(){		
+		this.newSeed();
+
 		this.turn = 0;
 		this.field.innerHTML = '';
 		for (var x = 0; x < this.width; x++) {
@@ -95,6 +104,7 @@ var game = {
 			red: 0,
 			blue: 0
 		}
+		
 		this.generateRandomBlock({type:0});
 		this.generateRandomBlock({type:1});
 		this.generateRandomBlock({type:2});
@@ -157,7 +167,8 @@ var game = {
 	},
 
 	gameOver: function(){		
-		alert('Game Over\n blue '+this.score.blue+' : '+this.score.red + ' red');
+		var score = this.score.blue-this.score.red;
+		alert('Game Over\nYOUR SCORE IS '+ score );
 		this.newGame();
 	},
 

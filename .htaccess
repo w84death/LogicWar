@@ -1,0 +1,4 @@
+AddDefaultCharset utf8
+RewriteEngine on
+RewriteRule ^([a-z0-9_-]+)/?$ index.html?seed=$1 [NC]
+RewriteRule ^([a-z0-9_-]+)/([a-z0-9_-]+)/?$ index.html?room=$1&seed=$2 [NC]
