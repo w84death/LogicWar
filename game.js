@@ -63,7 +63,7 @@ var game = {
 		    }
 		}, false);
 
-		var hammertime = Hammer(this.field).on('dragleft dragright dragdown dragup swipeleft swiperight swipeup swipedown', function(event) {				        		
+		var hammertime = Hammer(this.field, {swipe_velocity: 0.1}).on('dragleft dragright dragdown dragup swipeleft swiperight swipeup swipedown', function(event) {				        		
 	        event.gesture.preventDefault();
 	        if(['swipeleft','swiperight','swipeup','swipedown'].indexOf(event.type) > -1) {
 	        	game.registerMove(event);   	
